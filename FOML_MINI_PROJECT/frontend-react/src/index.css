@@ -1,0 +1,107 @@
+@import "tailwindcss";
+
+@theme {
+  --color-primary: #8b5cf6;
+  --color-accent: #3b82f6;
+  --color-success: #10b981;
+  --color-error: #ef4444;
+  --color-warning: #f59e0b;
+}
+
+:root {
+  --bg-color: #0f172a;
+  --text-color: #f8fafc;
+  --glass-bg: rgba(30, 41, 59, 0.4);
+  --glass-border: rgba(148, 163, 184, 0.1);
+  --card-bg: rgba(30, 41, 59, 0.7);
+  --grad-1: rgba(59, 130, 246, 0.1);
+  --grad-2: rgba(139, 92, 246, 0.1);
+}
+
+.light {
+  --bg-color: #f0f4f8;
+  --text-color: #1e293b;
+  --glass-bg: rgba(255, 255, 255, 0.6);
+  --glass-border: rgba(148, 163, 184, 0.3);
+  --card-bg: rgba(255, 255, 255, 0.9);
+  --grad-1: rgba(59, 130, 246, 0.2);
+  --grad-2: rgba(139, 92, 246, 0.2);
+}
+
+@layer base {
+  :root {
+    --background: 222.2 84% 4.9%;
+    --foreground: 210 40% 98%;
+
+    --card: 222.2 84% 4.9%;
+    --card-foreground: 210 40% 98%;
+
+    --popover: 222.2 84% 4.9%;
+    --popover-foreground: 210 40% 98%;
+
+    --primary: 217.2 91.2% 59.8%;
+    --primary-foreground: 222.2 47.4% 11.2%;
+
+    --secondary: 217.2 32.6% 17.5%;
+    --secondary-foreground: 210 40% 98%;
+
+    --muted: 217.2 32.6% 17.5%;
+    --muted-foreground: 215 20.2% 65.1%;
+
+    --accent: 217.2 32.6% 17.5%;
+    --accent-foreground: 210 40% 98%;
+
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 217.2 32.6% 17.5%;
+    --input: 217.2 32.6% 17.5%;
+    --ring: 212.7 26.8% 83.9%;
+  }
+
+  body {
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    @apply min-h-screen relative overflow-x-hidden transition-colors duration-300;
+    background-image: 
+      radial-gradient(circle at 15% 50%, var(--grad-1) 0%, transparent 50%),
+      radial-gradient(circle at 85% 30%, var(--grad-2) 0%, transparent 50%);
+  }
+}
+
+.glass-panel {
+  background-color: var(--glass-bg);
+  border-color: var(--glass-border);
+  @apply backdrop-blur-md border shadow-xl transition-colors duration-300;
+}
+
+@media print {
+  header, #home, #analyze, footer {
+    display: none !important;
+  }
+  body, .glass-panel {
+    background: transparent !important;
+    background-image: none !important;
+    color: black !important;
+    border: none !important;
+    box-shadow: none !important;
+  }
+  .glass-panel * {
+    color: black !important;
+  }
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  @apply bg-slate-700 rounded-full;
+}
+::-webkit-scrollbar-thumb:hover {
+  @apply bg-slate-600;
+}

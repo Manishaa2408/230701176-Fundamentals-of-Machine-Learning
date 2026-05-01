@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Voice AI Detector</title>
+  <meta name="description" content="AI Generated Voice Detection">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="background-blobs">
+      <div class="blob blob-1"></div>
+      <div class="blob blob-2"></div>
+  </div>
+  
+  <main class="container">
+    <header class="header">
+      <h1>Voice AI Detector</h1>
+      <p>Upload a voice sample to determine if it's real or AI-generated.</p>
+    </header>
+
+    <div class="glass-panel main-panel">
+      <form id="uploadForm">
+
+
+        <div class="form-group file-upload-wrapper">
+          <label for="audioFile" class="file-upload-label">
+            <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="upload-icon"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="17 8 12 3 7 8"></polyline><line x1="12" y1="3" x2="12" y2="15"></line></svg>
+            <span id="fileNameDisplay">Choose an MP3 audio file</span>
+          </label>
+          <input type="file" id="audioFile" name="file" accept=".mp3" required class="hidden-input">
+        </div>
+
+        <button type="submit" id="submitBtn" class="primary-btn">
+          <span class="btn-text">Analyze Audio</span>
+          <span class="loader hidden"></span>
+        </button>
+      </form>
+    </div>
+
+    <!-- Results Section -->
+    <div id="resultsPanel" class="glass-panel results-panel hidden fade-in">
+      <h2>Analysis Results</h2>
+      
+      <div class="results-grid">
+        <div class="result-card highlight-card shadow-sm">
+          <h3>Classification</h3>
+          <p id="resClassification" class="classification-text">--</p>
+          <div class="confidence">
+            <span>Confidence:</span>
+            <span id="resConfidence">--%</span>
+          </div>
+        </div>
+        
+        <div class="result-card">
+          <h3>Detected Language</h3>
+          <div class="lang-row" style="justify-content: center;">
+            <div class="lang-box">
+              <span class="label">Language</span>
+              <strong id="resDetLang">--</strong>
+            </div>
+          </div>
+        </div>
+
+        <div class="result-card full-width">
+          <h3>Probability Distribution</h3>
+          <div class="prob-bars">
+            <div class="prob-row">
+              <span class="prob-label">Human</span>
+              <div class="bar-bg">
+                <div id="humanBar" class="bar-fill human-fill" style="width: 0%"></div>
+              </div>
+              <span id="humanScore" class="prob-score">0%</span>
+            </div>
+            <div class="prob-row">
+              <span class="prob-label">AI</span>
+              <div class="bar-bg">
+                <div id="aiBar" class="bar-fill ai-fill" style="width: 0%"></div>
+              </div>
+              <span id="aiScore" class="prob-score">0%</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="result-card full-width">
+          <h3>Explanation</h3>
+          <p id="resExplanation" class="text-content">--</p>
+        </div>
+
+        <div class="result-card full-width">
+          <h3>Transcript</h3>
+          <p id="resTranscript" class="text-content transcript-box">--</p>
+        </div>
+      </div>
+    </div>
+    
+    <div id="errorPanel" class="glass-panel error-panel hidden fade-in">
+      <p id="errorMessage">An error occurred while analyzing the audio.</p>
+    </div>
+  </main>
+  
+  <script src="script.js"></script>
+</body>
+</html>
